@@ -47,16 +47,10 @@ pipeline {
                 } 
             }
         } 
-        stage('Docker Compose') {
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
-        
     }
     post {
             success {
-                mail body: "success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}"
+                mail body: "success on job ${env.JOB_NAME}, Build Number: ${env.BUILD_NUMBER}, Build URL: ${env.BUILD_URL}",
                 to: "ahlem.laajili@esprit.tn",
                 subject: "Pipeline Success"  
             }
