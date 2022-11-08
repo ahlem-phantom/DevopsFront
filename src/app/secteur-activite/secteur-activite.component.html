@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-11" style="margin-left: 20px">
+    <h3 style="margin-top: 20px">List Secteur-Activite </h3>
+    <hr>
+    <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1,null)">Add new Secteur-Activite</button>
+    <br><br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Libelle</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let p of listSec'>
+        <td>{{p.idSecteurActivite}}</td>
+        <td>{{p.codeSecteurActivite}}</td>
+        <td>{{p.libelleSecteurActivite}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary"
+                  (click)="open(mymodal1,p)">Edit
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-outline-danger"
+                  (click)="deleteSec(p.idSecteurActivite)">Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<ng-template #mymodal1 let-modal1>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new Secteur-Activite</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="sacode">Secteur-Activite Code</label>
+        <div class="input-group">
+          <input id="sacode" class="form-control" type="text" placeholder="Product Code"
+                 [(ngModel)]="sec.codeSecteurActivite"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="salibelle">Secteur-Activite libelle</label>
+        <div class="input-group">
+          <input id="salibelle" class="form-control" type="text" placeholder="Product Name"
+                 [(ngModel)]="sec.libelleSecteurActivite"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="addSec(sec)"
+            (click)="modal1.close('Save click')">Add
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal1.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+

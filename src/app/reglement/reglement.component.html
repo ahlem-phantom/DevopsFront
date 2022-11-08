@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-11" style="margin-left: 20px">
+    <h3 style="margin-top: 20px">List Reglement </h3>
+    <hr>
+    <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Reglement</button>
+    <br><br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Montant Paye</th>
+        <th>Montant Restant</th>
+        <th>Payee</th>
+        <th>Date Reglement</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let p of listReglement'>
+        <td>{{p.idReglement}}</td>
+        <td>{{p.montantPaye}}</td>
+        <td>{{p.montantRestant}}</td>
+        <td>{{p.payee}}</td>
+        <td>{{p.dateReglement}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<ng-template #mymodal1 let-modal1>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new Reglement</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="mp">Montant Paye</label>
+        <div class="input-group">
+          <input id="mp" class="form-control" type="number" placeholder="Montant Paye"
+                 [(ngModel)]="reglement.montantPaye"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="mr">Montant Restant</label>
+        <div class="input-group">
+          <input id="mr" class="form-control" type="number" placeholder="Montant Restant"
+                 [(ngModel)]="reglement.montantRestant"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="payee">Payee</label>
+        <div class="input-group">
+          <div class="input-group">
+            <select id="payee" class="form-select" aria-label="Default select example" [(ngModel)]="reglement.payee"
+                    name="hi">
+              <option value="True">Oui</option>
+              <option value="False">Non</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="mdate">Date Reglement</label>
+          <div class="input-group">
+            <input id="mdate" class="form-control" type="date" placeholder="Date Reglement"
+                   [(ngModel)]="reglement.dateReglement"
+                   [ngModelOptions]="{standalone : true}"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="addReglement(reglement)"
+            (click)="modal1.close('Save click')">Add
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal1.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+

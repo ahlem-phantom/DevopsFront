@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-md-11" style="margin-left: 20px">
+    <h3 style="margin-top: 20px">List Product </h3>
+    <hr>
+    <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1,null)">Add new Product</button>
+    <br><br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Create Date</th>
+        <th>Update Date</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let p of listProducts'>
+        <td>{{p.idProduit}}</td>
+        <td>{{p.codeProduit}}</td>
+        <td>{{p.libelleProduit}}</td>
+        <td>{{p.prix}}</td>
+        <td>{{p.dateCreation}}</td>
+        <td>{{p.dateDerniereModification}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary"
+                  (click)="open(mymodal1,p)">Edit
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-outline-danger"
+                  (click)="deleteProduct(p.idProduit)">Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<ng-template #mymodal1 let-modal1>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new Product</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="product-code">Product Code</label>
+        <div class="input-group">
+          <input id="Product-code" class="form-control" type="text" placeholder="Product Code"
+                 [(ngModel)]="product.codeProduit"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="product-name">Product Name</label>
+        <div class="input-group">
+          <input id="Product-name" class="form-control" type="text" placeholder="Product Name"
+                 [(ngModel)]="product.libelleProduit"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="product-prix">Product Price</label>
+        <div class="input-group">
+          <input id="Product-prix" class="form-control" type="number" placeholder="Product Price"
+                 [(ngModel)]="product.prix"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="product-cdate">Product Creation Date</label>
+        <div class="input-group">
+          <input id="Product-cdate" class="form-control" type="date" placeholder="Product Creation Date"
+                 [(ngModel)]="product.dateCreation"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="product-mdate">Product Modification Date</label>
+        <div class="input-group">
+          <input id="Product-mdate" class="form-control" type="date" placeholder="Product Modification Date"
+                 [(ngModel)]="product.dateDerniereModification"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="addProduct(product)"
+            (click)="modal1.close('Save click')">Add
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal1.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+

@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-11" style="margin-left: 20px">
+    <h3 style="margin-top: 20px">List Stock </h3>
+    <hr>
+    <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1,null)">Add new Stock</button>
+    <br><br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Libelle</th>
+        <th>Quantité</th>
+        <th>Quantité Min</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor='let p of listStocks'>
+        <td>{{p.idStock}}</td>
+        <td>{{p.libelleStock}}</td>
+        <td>{{p.qte}}</td>
+        <td>{{p.qteMin}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary"
+                  (click)="open(mymodal1,p)">Edit
+          </button>
+          &nbsp;
+          <button type="button" class="btn btn-outline-danger"
+                  (click)="deleteStock(p.idStock)">Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<ng-template #mymodal1 let-modal1>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new Stock</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="lib">Stock Libelle</label>
+        <div class="input-group">
+          <input id="lib" class="form-control" type="text" placeholder="Stock Libelle"
+                 [(ngModel)]="stock.libelleStock"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="qte">Stock Qte</label>
+        <div class="input-group">
+          <input id="qte" class="form-control" type="number" placeholder="Stock Qte"
+                 [(ngModel)]="stock.qte"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+      <div class="mb-3">
+        <label for="qteM">Stock Qte</label>
+        <div class="input-group">
+          <input id="qteM" class="form-control" type="number" placeholder="Stock Qte Min "
+                 [(ngModel)]="stock.qteMin"
+                 [ngModelOptions]="{standalone : true}"></div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="addStock(stock)"
+            (click)="modal1.close('Save click')">Add
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal1.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+
