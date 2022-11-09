@@ -1,6 +1,3 @@
-FROM node:16.17.0
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-RUN npm install -g @angular/cli@
-COPY . /usr/src/app
-CMD ng serve --host 0.0.0.0 --port 4200
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY /dist/crudtuto-Front /usr/share/nginx/html
