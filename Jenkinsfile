@@ -27,7 +27,6 @@ pipeline {
                     String dateString = date.format("dd-MM-yyyy")
                     println "Date : " + dateString
                 }
-                mail body: 'Pipeline has been executed successfully', to: "ahlem.laajili@esprit.tn", subject: 'pipeline executed'
             }
         }
 
